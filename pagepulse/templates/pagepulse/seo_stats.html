@@ -1,0 +1,39 @@
+{% extends "wagtailadmin/generic/base.html" %}
+
+{% block content %}
+<h1>SEO statistics for <a href="{% url 'wagtailadmin_pages:edit' object.page.pk %} ">{{ object.page }}</a></h1>
+
+
+<p>page has been externally referenced {{ object.backlink_count }} times.</p>
+
+<h2>live ({{ scores.live.total_score }} points)</h2>
+<h3>pros</h3>
+<ul>
+    {% for message in scores.live.success_messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+
+<h3>cons</h3>
+<ul>
+    {% for message in scores.live.fail_messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+
+<h2>draft ({{ scores.draft.total_score }} points)</h2>
+<h3>pros</h3>
+<ul>
+    {% for message in scores.draft.success_messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+
+<h3>cons</h3>
+<ul>
+    {% for message in scores.draft.fail_messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

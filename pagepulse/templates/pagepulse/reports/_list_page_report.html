@@ -1,0 +1,28 @@
+{% extends "wagtailadmin/reports/listing/_list_page_report.html" %}
+{% load i18n %}
+
+{% block extra_columns %}
+<th class="status">
+    <a href="?order=live">
+        {% trans 'live seo score' %}
+    </a>
+</th>
+<th class="status">
+    <a href="?order=draft">
+        {% trans 'draft seo score' %}
+    </a>
+</th>
+{% endblock %}
+
+{% block extra_page_data %}
+<td class="type" valign="top">
+    <a href="{% url 'seo-stats' pk=page.seo_stats.id %}">
+        {{ page.live_score }}
+    </a>
+</td>
+<td class="type" valign="top">
+    <a href="{% url 'seo-stats' pk=page.seo_stats.id %}">
+        {{ page.draft_score }}
+    </a>
+</td>
+{% endblock %}
