@@ -1,6 +1,14 @@
+from threading import local
+
 from wagtail.models import Page, Site
 
 from .models import SeoStats
+
+_locals = local()
+
+
+def get_request():
+    return getattr(_locals, 'request', None)
 
 
 class PageTrackMiddleware:
@@ -8,6 +16,7 @@ class PageTrackMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
+        _locals.request = request
         response = self.get_response(request)
         self._track_page(request, response)
         return response
