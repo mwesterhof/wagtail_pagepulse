@@ -36,7 +36,6 @@ class PageTrackMiddleware:
             referer_hostname = self._get_hostname(referer)
 
             if page_hostname != referer_hostname:
-                import ipdb; ipdb.set_trace() 
                 seo_stats = SeoStats.objects.get(page=page)
                 seo_stats.backlink_count += 1
                 seo_stats.save()

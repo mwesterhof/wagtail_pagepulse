@@ -73,11 +73,13 @@ def get_scores_for_page(page):
 
 
 def _get_live_page_score(page):
+    import ipdb; ipdb.set_trace() 
     report = _calculate_score(page.title, page.search_description)
     return report.total_score
 
 
 def _get_draft_page_score(revision):
+    import ipdb; ipdb.set_trace() 
     title = revision.content['title']
     search_description = revision.content['search_description']
 
